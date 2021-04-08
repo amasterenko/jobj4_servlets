@@ -11,17 +11,28 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 
 <script>
-    function sendGreeting() {
+    function sendGreetingTxt() {
         $.ajax({
             type: 'GET',
             url: 'http://localhost:8080/servlets/greet',
             data: 'name=' + $('#exampleInputEmail1').val(),
             dataType: 'text'
         }).done(function(data) {
-            var text = document.getElementById("txt");
-            text.textContent = data;
+            $('#txt').text(data.text);
         }).fail(function(err){
-            alert(err);
+            alert(err.data);
+        });
+    }
+    function sendGreetingJson() {
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080/servlets/greetjson',
+            data: JSON.stringify({text:$('#exampleInputEmail1').val()}),
+            dataType: 'json'
+        }).done(function(data) {
+            $('#txt').text(data.text);
+        }).fail(function(err){
+            alert(err.data);
         });
     }
 </script>
@@ -33,7 +44,7 @@
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
-        <button type="button" class="btn btn-primary" onclick="sendGreeting()">Submit</button>
+        <button type="button" class="btn btn-primary" onclick="sendGreetingJson()">Submit</button>
     </form>
 </div>
 </body>

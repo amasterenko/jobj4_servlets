@@ -8,8 +8,17 @@
     <servlet-name>GreetingServlet</servlet-name>
     <servlet-class>ru.job4j.servlets.GreetingServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>GreetingServletJson</servlet-name>
+    <servlet-class>ru.job4j.servlets.GreetingServletJson</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>GreetingServlet</servlet-name>
     <url-pattern>/greet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GreetingServletJson</servlet-name>
+    <url-pattern>/greetjson</url-pattern>
   </servlet-mapping>
 </web-app>
